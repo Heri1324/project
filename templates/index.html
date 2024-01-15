@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Expenses Tracker</h1>
+    <img src="{{ url_for('static', filename='images/money.jpg') }}" alt="Expense Tracker Image" style="max-width: 100%; height: auto;">
+    <nav>
+        <ul>
+            <li><a href="/login">Login</a></li>
+            <br>
+            <br>
+            <li><a href="/register">Register</a></li>
+        </ul>
+    </nav>
+    <footer>
+        <p>Copyright © 2024</p>
+    </footer>
+</body>
+</html>

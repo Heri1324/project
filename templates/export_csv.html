@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export CSV</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Expenses Tracker - Export CSV</h1>
+    
+    <form action="{{ url_for('export_csv') }}" method="Post">
+        <label for="start_date">Start Date:</label>
+        <input type="date" name="start_date" required>
+        <br>
+        <label for="end_date">End Date:</label>
+        <input type="date" name="end_date" required>
+        <br>
+        <br>
+        <p>Click the button below to export your data to CSV:</p>
+        <button type="submit" >Export Expenses as CSV file</button>
+    </form>
+        <br>
+        <br>
+        <button type="button" onclick="window.location.href='{{ url_for('dashboard') }}'">Go to Dashboard</button>
+    <footer>
+        <p>Copyright © 2024</p>
+    </footer>
+</body>
+</html>

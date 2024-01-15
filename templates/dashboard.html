@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Expenses Tracker - Dashboard</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                 {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <br>
+    <div id="chart-container">
+    <h2>Total Expenses Distribution Chart</h2>
+    {% if bar_chart_image %}
+        <img src="{{ bar_chart_image }}" alt="Total Expenses, Budgets and Thresholds Chart" style="max-width: 100%; height: auto;">
+    {% else %}
+        <img src="{{ url_for('static', filename='images/money.jpg') }}" alt="Expense Tracker Image" style="max-width: 100%; height: auto;">
+  {% endif %}
+    </div>    
+    <br>
+    <nav>
+        <ul>
+            <li><a href="/categories">Expenses categories</a></li>
+            <li><a href="/expense_form">Expense Form</a></li>
+            <li><a href="/reports">Expenses Reports</a></li>
+            <li><a href="/export_csv">Export Expenses as CSV</a></li>
+            <li><a href="/import_csv">Import Expenses as CSV</a></li>
+            <li><a href="/settings">Settings</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    <footer>
+        <p>Copyright © 2024</p>
+    </footer>
+</body>
+</html>

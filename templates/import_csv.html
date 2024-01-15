@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import CSV</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Expenses Tracker - Import CSV</h1>
+ {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+        
+    <form action="{{ url_for('import_csv') }}" method="post" enctype="multipart/form-data">
+    <label for="csv_file">Import Expenses (CSV file):</label>
+    <br>
+    <input type="file" name="csv_file" accept=".csv" required>
+    <br>
+    <button type="submit">Import_CSV</button>
+    <br>
+    <br>
+    <button type="button" onclick="window.location.href='{{ url_for('dashboard') }}'">Go to Dashboard</button>
+    </form>
+    <footer>
+        <p>Copyright © 2024</p>
+    </footer>
+</body>
+</html>

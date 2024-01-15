@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Expenses Tracker - Categories Form</h1>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    
+<!-- Arată categoriile existente -->
+<h2>Expense Categories</h2>
+<ul>
+    {% for category in categories %}
+        <li>{{ category[2] }} <a href="{{ url_for('delete_category', category_name=category[2]) }}">Delete</a></li>
+    {% endfor %}
+</ul>
+
+<!-- Adaugă o nouă categorie -->
+<h2>Add New Category</h2>
+<form action="{{ url_for('add_category') }}" method="post">
+    <label for="category_name">Category Name:</label>
+    <input type="text" name="category_name" required>
+    <br>
+    <label for="budget">Budget for category:</label>
+    <input type="number" name="budget" step="0.01" placeholder="Enter budget value" required>
+    <br>
+    <label for="budget_threshold_percentage">Budget Threshold Percentage %:</label>
+    <input type="number" name="budget_threshold_percentage" step="1" placeholder="Enter % of budget threshold value" required>
+    <br>
+    <button type="submit">Add Category</button>
+    <br>
+    <br>
+    <button type="button" onclick="window.location.href='{{ url_for('dashboard') }}'">Go to Dashboard</button>
+</form>
+<footer>
+    <p>Copyright © 2024</p>
+</footer>
+</body>
+</html>

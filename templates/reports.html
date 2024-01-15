@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses Reports</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Expenses Tracker - Reports</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+	<form action="/reports" method="post">
+        <label for="categories">Select Categories:</label>
+        {% for category in categories %}
+          <div>
+            <input type="checkbox" name="categories" value="{{ category }}"> {{ category }}
+          </div>
+        {% endfor %}
+        <br>
+        <label for="start_date">Start Date:</label>
+		<input type="date" name="start_date" required>
+		<br>
+		<label for="end_date">End Date:</label>
+		<input type="date" name="end_date" required>
+		<br>
+ 		<button type="submit">Generate Report</button>
+		<br>
+		<br>
+        <button type="button" onclick="window.location.href='{{ url_for('dashboard') }}'">Go to Dashboard</button>
+        <br>
+	</form>
+	
+    <table align="center" border="1">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Date (Y-M-D)</th>
+				<th>Amount</th>
+                <th>Description</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+                <tr>
+                    <td>{{ expense[1] }}</td>
+                    <td>{{ expense[3] }}</td>
+                    <td>{{ '{:.2f}'.format(expense[2]) }}</td>
+                    <td>{{ expense[4] }}</td>
+                    <td>{{ expense[5] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+	
+    <footer>
+        <p>Copyright © 2024</p>
+    </footer>
+</body>
+</html>
